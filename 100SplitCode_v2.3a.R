@@ -1,5 +1,5 @@
-## This is page 4 using LIHC CESC LUAD for trainning and only CESC for prediction
-## Page 4 100SplitCode_v2.3a.R
+## Using LIHC CESC LUAD for trainning and only CESC for prediction
+## 100SplitCode_v2.3a.R
 load("~/LIHC_CESC_LUAD_combined.rdata")
 
 met.data[429,23] <- 0.99
@@ -256,7 +256,7 @@ for (z in 1:split.num) {
         
         test.asian=NULL
         f.in=as.formula(paste(colnames(train3)[outcome] ,'~ -1+',paste(c(colnames(train3)[c(36:67,69:(dim(train3)[2]-9))]),collapse='+')))
-        # in above funcion we are leaving out column 68 ( raceblack), columns 78 to 85 ( 8 columns: type*stage), and 86 (last column=groupid)
+    
         try(test.asian <- cmmp(f.in, r.in, train = train3[,c(outcome,36:dim(train3)[2])], x.new = test4[,c(36:dim(test4)[2])], y.new = test4[,outcome], x.fut = NULL, match.train = NULL, a1 = NULL, n.new = NULL, interval = TRUE))
         
         test.asian_m=NULL
@@ -339,7 +339,7 @@ for (z in 1:split.num) {
         rf_modpred_rau=predict(rf_mod_rau,newdata = test4[,c(36:dim(test4)[2])])
         
         
-        ### ENET + CMMP (it didn't work. see note below about setting all combocmmp to Null)
+    
         
         ## Taking residual from elastic net
         
